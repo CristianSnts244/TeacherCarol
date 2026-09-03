@@ -355,22 +355,12 @@
       box-shadow: 20px 20px 0 #ff2d8d;
     }
 
-    .photo-placeholder {
+    .teacher-photo {
+      width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      font-size: 15px;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .photo-placeholder strong {
+      object-fit: cover;
+      object-position: center;
       display: block;
-      color: #ff2d8d;
-      font-size: 25px;
-      margin-bottom: 10px;
     }
 
     .pink-circle {
@@ -381,6 +371,8 @@
       background: #ff2d8d;
       right: -70px;
       top: -70px;
+      z-index: 2;
+      pointer-events: none;
     }
 
     /* =========================
@@ -789,19 +781,10 @@
 
         <div class="pink-circle"></div>
 
-        <div class="photo-placeholder">
-
-          <div>
-
-            <strong>
-              Teacher Carol
-            </strong>
-
-            Sua foto profissional aparecerá aqui.
-
-          </div>
-
-        </div>
+        <img
+          src="Carol.jpg"
+          alt="Teacher Carol"
+          class="teacher-photo">
 
       </div>
 
@@ -1075,17 +1058,12 @@
       const button = document.getElementById("enterButton");
       const ring = document.getElementById("progressRing");
 
-      // Se a abertura não existir, libera o site.
       if (!intro || !button) {
         document.body.classList.remove("intro-active");
         return;
       }
 
       let entered = false;
-
-      // =========================
-      // CÍRCULO DE PROGRESSO
-      // =========================
 
       if (ring) {
 
@@ -1115,10 +1093,6 @@
       }
 
 
-      // =========================
-      // ENTRAR
-      // =========================
-
       function enterSite() {
 
         if (entered) return;
@@ -1138,10 +1112,6 @@
       }
 
 
-      // =========================
-      // CLIQUE NO BOTÃO
-      // =========================
-
       button.addEventListener("click", function (event) {
 
         event.preventDefault();
@@ -1151,10 +1121,6 @@
 
       });
 
-
-      // =========================
-      // TECLA ENTER
-      // =========================
 
       document.addEventListener("keydown", function (event) {
 
