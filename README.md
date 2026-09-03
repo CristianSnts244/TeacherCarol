@@ -1,4 +1,4 @@
-# # Teacher Carol 🇺🇸
+# Teacher Carol 🇺🇸
 
 Site oficial da Teacher Carol — aulas particulares de inglês.
 
