@@ -1,1 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Teacher Carol | Inglês Particular</title>
+
+  <meta
+    name="description"
+    content="Aulas particulares de inglês com a Teacher Carol. Aprenda no seu ritmo e desenvolva sua confiança para falar inglês."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      background: #f8fbff;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e8eef7;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      color: #174ea6;
+    }
+
+    .logo span {
+      color: #e53935;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 28px;
+    }
+
+    .navlinks a {
+      color: #344054;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .navlinks a:hover {
+      color: #1769e0;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 7% 80px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+
+      background:
+        radial-gradient(circle at top right, #dbeafe, transparent 35%),
+        linear-gradient(135deg, #eef6ff, #ffffff);
+    }
+
+    .heroText {
+      max-width: 680px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 9px 15px;
+      border-radius: 50px;
+
+      background: #e7f0ff;
+      color: #1757b7;
+
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      margin: 22px 0;
+
+      font-size: clamp(45px, 6vw, 74px);
+      line-height: 1.03;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: #1769e0;
+    }
+
+    .hero p {
+      max-width: 630px;
+
+      color: #5b6575;
+      font-size: 20px;
+      line-height: 1.75;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+
+      padding: 15px 24px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+      font-weight: 800;
+
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary {
+      background: #1769e0;
+      color: white;
+
+      box-shadow: 0 10px 25px rgba(23, 105, 224, 0.2);
+    }
+
+    .secondary {
+      background: white;
+      color: #25324a;
+      border: 1px solid #d6deea;
+    }
+
+    /* FOTO */
+
+    .visual {
+      width: 340px;
+      height: 430px;
+
+      flex-shrink: 0;
+
+      border-radius: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(145deg, #dbeafe, #ffffff);
+
+      box-shadow: 0 25px 60px rgba(29, 78, 216, 0.2);
+    }
+
+    .placeholder {
+      width: 255px;
+      height: 340px;
+
+      border-radius: 24px;
+
+      border: 2px dashed #9ab9e8;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      color: #5680b9;
+
+      padding: 30px;
+
+      background: rgba(255,255,255,0.6);
+    }
+
+    .placeholder strong {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding: 100px 7%;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 42px;
+      margin-bottom: 14px;
+    }
+
+    .muted {
+      color: #667085;
+      font-size: 18px;
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
+
+      margin-top: 48px;
+    }
+
+    .card {
+      background: white;
+
+      padding: 32px;
+
+      border-radius: 20px;
+
+      border: 1px solid #e8edf5;
+
+      box-shadow: 0 12px 30px rgba(16, 42, 77, 0.05);
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #667085;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+
+    .cta {
+      margin: 20px 7% 80px;
+
+      padding: 65px 8%;
+
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #123f88,
+          #1769e0
+        );
+
+      color: white;
+
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #dbeafe;
+      font-size: 18px;
+    }
+
+    .cta .primary {
+      background: white;
+      color: #123f88;
+
+      margin-top: 20px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px;
+
+      text-align: center;
+
+      color: #667085;
+
+      border-top: 1px solid #e8edf5;
+
+      background: white;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 125px;
+
+        flex-direction: column;
+
+        text-align: center;
+      }
+
+      .heroText {
+        max-width: 700px;
+      }
+
+      .hero p {
+        margin: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .visual {
+        width: 290px;
+        height: 365px;
+      }
+
+      .placeholder {
+        width: 220px;
+        height: 290px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section h2,
+      .cta h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+      Teacher <span>Carol</span>
+    </div>
+
+    <div class="navlinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#aulas">Aulas</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+  </nav>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="heroText">
+
+        <span class="tag">
+          🇺🇸 Inglês de um jeito leve e personalizado
+        </span>
+
+        <h1>
+          Fale inglês com
+          <span>confiança.</span>
+        </h1>
+
+        <p>
+          Aulas particulares de inglês pensadas para você.
+          Aprenda no seu ritmo, desenvolva sua conversação
+          e alcance seus objetivos com acompanhamento individual.
+        </p>
+
+        <div class="buttons">
+
+          <a
+            class="btn primary"
+            href="#contato"
+          >
+            Quero conhecer as aulas
+          </a>
+
+          <a
+            class="btn secondary"
+            href="#aulas"
+          >
+            Ver como funciona
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- ESPAÇO PARA A FOTO DA CAROL -->
+
+      <div class="visual">
+
+        <div class="placeholder">
+
+          <div style="font-size:45px;">
+            📸
+          </div>
+
+          <strong>
+            Teacher Carol
+          </strong>
+
+          <span>
+            A foto profissional será adicionada aqui.
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+
+    <section
+      id="sobre"
+      class="section center"
+    >
+
+      <h2>
+        Aprender inglês pode ser mais simples
+      </h2>
+
+      <p class="muted">
+        Um acompanhamento próximo para transformar
+        estudo em evolução.
+      </p>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">
+            🎯
+          </div>
+
+          <h3>
+            Aulas personalizadas
+          </h3>
+
+          <p>
+            Conteúdo adaptado ao seu nível,
+            rotina e objetivos.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            💬
+          </div>
+
+          <h3>
+            Foco em conversação
+          </h3>
+
+          <p>
+            Pratique situações reais e ganhe
+            segurança para falar.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            📈
+          </div>
+
+          <h3>
+            Evolução de verdade
+          </h3>
+
+          <p>
+            Aprenda com acompanhamento e perceba
+            seu progresso aula após aula.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- AULAS -->
+
+    <section
+      id="aulas"
+      class="section center"
+    >
+
+      <h2>
+        Como funcionam as aulas?
+      </h2>
+
+      <p class="muted">
+        Tudo pensado para deixar seu aprendizado mais prático.
+      </p>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <h3>
+            01. Conheça seu nível
+          </h3>
+
+          <p>
+            Entendemos onde você está e o que
+            deseja alcançar.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            02. Monte seu plano
+          </h3>
+
+          <p>
+            Definimos uma abordagem de estudos
+            de acordo com suas necessidades.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            03. Comece a evoluir
+          </h3>
+
+          <p>
+            Aulas individuais, prática e
+            acompanhamento contínuo.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTATO -->
+
+    <section
+      id="contato"
+      class="cta"
+    >
+
+      <h2>
+        Pronto para começar?
+      </h2>
+
+      <p>
+        Entre em contato e descubra como as aulas
+        da Teacher Carol podem ajudar você.
+      </p>
+
+      <!--
+        IMPORTANTE:
+        Depois vamos colocar aqui o WhatsApp REAL da Carol.
+      -->
+
+      <a
+        class="btn primary"
+        href="#"
+        onclick="alert('Em breve vamos colocar o WhatsApp da Teacher Carol aqui!')"
+      >
+        💬 Falar pelo WhatsApp
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Teacher Carol ·
+    Aulas particulares de inglês
+
+  </footer>
+
+</body>
+</html>
