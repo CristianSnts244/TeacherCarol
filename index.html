@@ -9,7 +9,7 @@
 
   <meta
     name="description"
-    content="Aulas particulares de inglês com a Teacher Carol. Aprenda no seu ritmo e desenvolva sua confiança para falar inglês."
+    content="Aulas particulares de inglês com a Teacher Carol. Aprenda inglês com confiança, leveza e acompanhamento personalizado."
   >
 
   <style>
@@ -28,191 +28,321 @@
       color: #171717;
       background: #ffffff;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* NAVBAR */
+    :root {
+      --black: #171717;
+      --black-soft: #242424;
+      --pink: #ff2d8d;
+      --pink-dark: #e51f79;
+      --pink-light: #ffe5f1;
+      --white: #ffffff;
+      --gray: #686868;
+      --light: #f8f8f8;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
 
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 18px 7%;
+      height: 78px;
+      padding: 0 7%;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
+
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px);
+
       border-bottom: 1px solid #eeeeee;
-      z-index: 10;
+
+      z-index: 100;
     }
 
     .logo {
-      font-size: 23px;
-      font-weight: 800;
-      color: #171717;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--black);
     }
 
     .logo span {
-      color: #ff2d8d;
+      color: var(--pink);
     }
 
     .navlinks {
       display: flex;
-      gap: 28px;
+      gap: 34px;
     }
 
     .navlinks a {
-      color: #333333;
+      position: relative;
+
+      color: #333;
       text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
+      font-size: 15px;
+      font-weight: 700;
+
+      transition: 0.25s;
+    }
+
+    .navlinks a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+
+      width: 0;
+      height: 2px;
+
+      background: var(--pink);
+
+      transition: 0.25s;
     }
 
     .navlinks a:hover {
-      color: #ff2d8d;
+      color: var(--pink);
     }
 
-    /* HERO */
+    .navlinks a:hover::after {
+      width: 100%;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
+      position: relative;
+
       min-height: 100vh;
-      padding: 150px 7% 80px;
+
+      padding: 145px 7% 90px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 60px;
+
+      gap: 80px;
 
       background:
         radial-gradient(
-          circle at top right,
-          rgba(255, 45, 141, 0.15),
-          transparent 35%
+          circle at 85% 20%,
+          rgba(255, 45, 141, 0.17),
+          transparent 30%
         ),
-        linear-gradient(
-          135deg,
-          #f7f7f7,
-          #ffffff
-        );
+        radial-gradient(
+          circle at 15% 90%,
+          rgba(0, 0, 0, 0.06),
+          transparent 30%
+        ),
+        #ffffff;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 280px;
+      height: 280px;
+
+      border: 1px solid rgba(255, 45, 141, 0.18);
+      border-radius: 50%;
+
+      right: -90px;
+      bottom: -80px;
     }
 
     .heroText {
+      position: relative;
+      z-index: 2;
+
       max-width: 680px;
     }
 
     .tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
       padding: 9px 15px;
+
       border-radius: 50px;
 
-      background: #ffe3f0;
-      color: #d91870;
+      background: var(--pink-light);
+      color: var(--pink-dark);
 
-      font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 800;
+
+      border: 1px solid rgba(255, 45, 141, 0.15);
     }
 
     .hero h1 {
-      margin: 22px 0;
+      margin: 25px 0 22px;
 
-      font-size: clamp(45px, 6vw, 74px);
-      line-height: 1.03;
-      letter-spacing: -2px;
-      color: #171717;
+      font-size: clamp(48px, 6vw, 78px);
+      line-height: 0.98;
+
+      letter-spacing: -4px;
+
+      color: var(--black);
     }
 
     .hero h1 span {
-      color: #ff2d8d;
+      color: var(--pink);
     }
 
     .hero p {
-      max-width: 630px;
+      max-width: 600px;
 
-      color: #5f5f5f;
-      font-size: 20px;
-      line-height: 1.75;
+      color: var(--gray);
+
+      font-size: 19px;
+      line-height: 1.8;
     }
 
     .buttons {
       display: flex;
       gap: 14px;
-      margin-top: 32px;
+
+      margin-top: 35px;
+
       flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
       padding: 15px 24px;
 
-      border-radius: 12px;
+      border-radius: 13px;
 
       text-decoration: none;
-      font-weight: 800;
 
-      transition: 0.2s;
+      font-weight: 800;
+      font-size: 15px;
+
+      transition: 0.25s;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     .primary {
-      background: #ff2d8d;
-      color: #ffffff;
+      background: var(--pink);
+      color: var(--white);
 
-      box-shadow: 0 10px 25px rgba(255, 45, 141, 0.25);
+      box-shadow:
+        0 12px 30px rgba(255, 45, 141, 0.25);
     }
 
     .primary:hover {
-      background: #e91f7d;
+      background: var(--pink-dark);
+      box-shadow:
+        0 16px 35px rgba(255, 45, 141, 0.32);
     }
 
     .secondary {
       background: #ffffff;
-      color: #171717;
+      color: var(--black);
+
       border: 1px solid #dddddd;
     }
 
     .secondary:hover {
-      border-color: #ff2d8d;
-      color: #ff2d8d;
+      color: var(--pink);
+      border-color: var(--pink);
     }
 
-    /* FOTO */
+    /* =========================
+       FOTO / MOCKUP
+    ========================= */
 
     .visual {
-      width: 340px;
-      height: 430px;
+      position: relative;
+
+      width: 390px;
+      height: 490px;
 
       flex-shrink: 0;
 
-      border-radius: 30px;
+      border-radius: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #151515,
+          #292929
+        );
+
+      box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.20);
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      background:
-        linear-gradient(
-          145deg,
-          #171717,
-          #303030
-        );
+      transform: rotate(2deg);
+
+      transition: 0.4s;
+    }
+
+    .visual:hover {
+      transform: rotate(0deg) translateY(-5px);
+    }
+
+    .visual::before {
+      content: "";
+
+      position: absolute;
+
+      inset: -12px;
+
+      border-radius: 42px;
+
+      border: 1px solid rgba(255, 45, 141, 0.35);
+
+      pointer-events: none;
+    }
+
+    .visual::after {
+      content: "";
+
+      position: absolute;
+
+      width: 80px;
+      height: 80px;
+
+      border-radius: 50%;
+
+      background: var(--pink);
+
+      top: -25px;
+      right: -25px;
 
       box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.18),
-        0 10px 35px rgba(255, 45, 141, 0.15);
+        0 12px 30px rgba(255, 45, 141, 0.35);
     }
 
     .placeholder {
-      width: 255px;
-      height: 340px;
+      width: 310px;
+      height: 410px;
 
-      border-radius: 24px;
+      border-radius: 27px;
 
-      border: 2px dashed #ff2d8d;
+      border: 2px dashed rgba(255, 45, 141, 0.8);
 
       display: flex;
       flex-direction: column;
@@ -223,163 +353,415 @@
 
       color: #ffffff;
 
-      padding: 30px;
+      padding: 35px;
 
-      background: rgba(255, 255, 255, 0.06);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.08),
+          rgba(255,255,255,0.02)
+        );
+
+      backdrop-filter: blur(5px);
+    }
+
+    .placeholder .camera {
+      font-size: 52px;
+      margin-bottom: 15px;
     }
 
     .placeholder strong {
-      font-size: 18px;
+      font-size: 21px;
       margin-bottom: 8px;
     }
 
     .placeholder span {
-      color: #dddddd;
+      color: #cfcfcf;
+      font-size: 14px;
     }
 
-    /* SECTIONS */
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      padding: 30px 7%;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+
+      background: var(--black);
+      color: white;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat strong {
+      display: block;
+
+      color: var(--pink);
+
+      font-size: 27px;
+      margin-bottom: 3px;
+    }
+
+    .stat span {
+      color: #cccccc;
+      font-size: 14px;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
 
     .section {
-      padding: 100px 7%;
+      padding: 110px 7%;
     }
 
     .center {
       text-align: center;
     }
 
+    .section-label {
+      display: inline-block;
+
+      margin-bottom: 13px;
+
+      color: var(--pink);
+
+      font-size: 13px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
     .section h2 {
-      font-size: 42px;
-      margin-bottom: 14px;
-      color: #171717;
+      max-width: 750px;
+
+      margin: auto;
+
+      font-size: clamp(34px, 4vw, 50px);
+
+      line-height: 1.08;
+
+      letter-spacing: -2px;
+
+      color: var(--black);
     }
 
     .muted {
-      color: #666666;
-      font-size: 18px;
+      max-width: 650px;
+
+      margin: 16px auto 0;
+
+      color: var(--gray);
+
+      font-size: 17px;
     }
 
-    /* CARDS */
+    /* =========================
+       CARDS
+    ========================= */
 
     .cards {
       display: grid;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
 
       gap: 22px;
 
-      margin-top: 48px;
+      margin-top: 55px;
     }
 
     .card {
+      position: relative;
+
       background: #ffffff;
 
-      padding: 32px;
+      padding: 35px;
 
-      border-radius: 20px;
+      border-radius: 24px;
 
       border: 1px solid #eeeeee;
 
-      box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.05);
+      text-align: left;
 
-      transition: 0.25s;
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.045);
+
+      transition: 0.3s;
+
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 4px;
+
+      background: var(--pink);
+
+      transform: scaleX(0);
+      transform-origin: left;
+
+      transition: 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
 
-      border-color: rgba(255, 45, 141, 0.35);
+      border-color: rgba(255, 45, 141, 0.25);
 
       box-shadow:
-        0 18px 40px rgba(255, 45, 141, 0.10);
+        0 25px 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
     }
 
     .icon {
-      font-size: 32px;
-      margin-bottom: 10px;
+      width: 55px;
+      height: 55px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 22px;
+
+      border-radius: 16px;
+
+      background: var(--pink-light);
+
+      font-size: 25px;
     }
 
     .card h3 {
       font-size: 21px;
+
       margin-bottom: 10px;
-      color: #171717;
+
+      color: var(--black);
     }
 
     .card p {
-      color: #666666;
+      color: var(--gray);
+
       line-height: 1.7;
+
+      font-size: 15px;
     }
 
-    /* CTA */
+    /* =========================
+       DARK SECTION
+    ========================= */
+
+    .dark-section {
+      background: var(--black);
+      color: white;
+    }
+
+    .dark-section h2 {
+      color: white;
+    }
+
+    .dark-section .muted {
+      color: #bdbdbd;
+    }
+
+    .steps {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 25px;
+
+      margin-top: 55px;
+    }
+
+    .step {
+      padding: 35px;
+
+      border-radius: 24px;
+
+      background: #222222;
+
+      border: 1px solid #333333;
+
+      text-align: left;
+
+      transition: 0.3s;
+    }
+
+    .step:hover {
+      border-color: var(--pink);
+
+      transform: translateY(-5px);
+    }
+
+    .number {
+      color: var(--pink);
+
+      font-size: 14px;
+      font-weight: 900;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: #bcbcbc;
+      font-size: 15px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
 
     .cta {
-      margin: 20px 7% 80px;
+      position: relative;
 
-      padding: 65px 8%;
+      margin: 90px 7%;
 
-      border-radius: 30px;
+      padding: 80px 8%;
+
+      border-radius: 35px;
 
       background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(255, 45, 141, 0.35),
+          transparent 30%
+        ),
         linear-gradient(
           135deg,
           #171717,
           #292929
         );
 
-      color: #ffffff;
+      color: white;
 
       text-align: center;
 
+      overflow: hidden;
+
       box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.15);
+        0 30px 70px rgba(0,0,0,0.18);
+    }
+
+    .cta::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.12);
+
+      left: -70px;
+      bottom: -70px;
     }
 
     .cta h2 {
-      font-size: 42px;
-      margin-bottom: 12px;
+      position: relative;
+
+      font-size: clamp(34px, 4vw, 48px);
+
+      margin-bottom: 15px;
+
+      letter-spacing: -2px;
     }
 
     .cta p {
-      color: #dddddd;
-      font-size: 18px;
+      position: relative;
+
+      max-width: 600px;
+
+      margin: auto;
+
+      color: #cccccc;
+
+      font-size: 17px;
     }
 
     .cta .primary {
-      background: #ff2d8d;
-      color: #ffffff;
+      position: relative;
 
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
-      padding: 30px;
+      padding: 35px 7%;
 
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      color: #666666;
+      background: #ffffff;
 
       border-top: 1px solid #eeeeee;
 
-      background: #ffffff;
+      color: #777777;
+
+      font-size: 14px;
     }
 
-    /* MOBILE */
+    footer strong {
+      color: var(--black);
+    }
 
-    @media (max-width: 850px) {
+    footer span {
+      color: var(--pink);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      nav {
+        padding: 0 5%;
+      }
 
       .navlinks {
         display: none;
       }
 
       .hero {
-        padding-top: 125px;
+        padding: 125px 6% 80px;
 
         flex-direction: column;
 
         text-align: center;
+
+        gap: 60px;
       }
 
       .heroText {
@@ -395,21 +777,71 @@
       }
 
       .visual {
-        width: 290px;
-        height: 365px;
+        width: 300px;
+        height: 390px;
       }
 
       .placeholder {
-        width: 220px;
-        height: 290px;
+        width: 240px;
+        height: 325px;
       }
 
-      .cards {
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .cards,
+      .steps {
         grid-template-columns: 1fr;
       }
 
-      .section h2,
-      .cta h2 {
+      .section {
+        padding: 80px 6%;
+      }
+
+      .cta {
+        margin: 60px 5%;
+
+        padding: 60px 7%;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .hero h1 {
+        font-size: 48px;
+        letter-spacing: -2.5px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .visual {
+        width: 270px;
+        height: 350px;
+      }
+
+      .placeholder {
+        width: 215px;
+        height: 290px;
+      }
+
+      .section h2 {
         font-size: 34px;
       }
     }
@@ -429,6 +861,7 @@
     <div class="navlinks">
       <a href="#sobre">Sobre</a>
       <a href="#aulas">Aulas</a>
+      <a href="#metodo">Método</a>
       <a href="#contato">Contato</a>
     </div>
 
@@ -444,18 +877,19 @@
       <div class="heroText">
 
         <span class="tag">
-          🇺🇸 Inglês de um jeito leve e personalizado
+          🇺🇸 Inglês personalizado para você
         </span>
 
         <h1>
-          Fale inglês com
-          <span>confiança.</span>
+          Seu inglês.
+          <br>
+          Sua <span>evolução.</span>
         </h1>
 
         <p>
-          Aulas particulares de inglês pensadas para você.
-          Aprenda no seu ritmo, desenvolva sua conversação
-          e alcance seus objetivos com acompanhamento individual.
+          Aprenda inglês de forma leve, prática e personalizada.
+          Aulas particulares pensadas para transformar seu
+          conhecimento em confiança para falar.
         </p>
 
         <div class="buttons">
@@ -464,14 +898,14 @@
             class="btn primary"
             href="#contato"
           >
-            Quero conhecer as aulas
+            Quero começar →
           </a>
 
           <a
             class="btn secondary"
             href="#aulas"
           >
-            Ver como funciona
+            Conhecer as aulas
           </a>
 
         </div>
@@ -479,13 +913,13 @@
       </div>
 
 
-      <!-- ESPAÇO PARA A FOTO DA CAROL -->
+      <!-- FOTO DA CAROL -->
 
       <div class="visual">
 
         <div class="placeholder">
 
-          <div style="font-size:45px;">
+          <div class="camera">
             📸
           </div>
 
@@ -494,11 +928,34 @@
           </strong>
 
           <span>
-            A foto profissional será adicionada aqui.
+            Sua foto profissional
+            entrará aqui.
           </span>
 
         </div>
 
+      </div>
+
+    </section>
+
+
+    <!-- DESTAQUES -->
+
+    <section class="stats">
+
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Aulas personalizadas</span>
+      </div>
+
+      <div class="stat">
+        <strong>1:1</strong>
+        <span>Acompanhamento individual</span>
+      </div>
+
+      <div class="stat">
+        <strong>+ Confiança</strong>
+        <span>Foco na comunicação</span>
       </div>
 
     </section>
@@ -511,13 +968,17 @@
       class="section center"
     >
 
+      <span class="section-label">
+        Por que aprender com a Carol?
+      </span>
+
       <h2>
-        Aprender inglês pode ser mais simples
+        Inglês pensado para a sua vida.
       </h2>
 
       <p class="muted">
-        Um acompanhamento próximo para transformar
-        estudo em evolução.
+        Nada de aulas genéricas. O aprendizado acompanha
+        seu nível, seus objetivos e o seu ritmo.
       </p>
 
 
@@ -534,8 +995,8 @@
           </h3>
 
           <p>
-            Conteúdo adaptado ao seu nível,
-            rotina e objetivos.
+            Conteúdo adaptado às suas necessidades,
+            interesses e objetivos.
           </p>
 
         </div>
@@ -552,8 +1013,8 @@
           </h3>
 
           <p>
-            Pratique situações reais e ganhe
-            segurança para falar.
+            Desenvolva segurança para entender,
+            responder e se comunicar em inglês.
           </p>
 
         </div>
@@ -566,12 +1027,12 @@
           </div>
 
           <h3>
-            Evolução de verdade
+            Evolução contínua
           </h3>
 
           <p>
-            Aprenda com acompanhamento e perceba
-            seu progresso aula após aula.
+            Acompanhe seu desenvolvimento e
+            evolua aula após aula.
           </p>
 
         </div>
@@ -585,57 +1046,75 @@
 
     <section
       id="aulas"
-      class="section center"
+      class="section dark-section center"
     >
 
+      <span class="section-label">
+        As aulas
+      </span>
+
       <h2>
-        Como funcionam as aulas?
+        Aprender pode ser leve.
       </h2>
 
       <p class="muted">
-        Tudo pensado para deixar seu aprendizado mais prático.
+        Um processo simples, próximo e feito para
+        você realmente colocar o inglês em prática.
       </p>
 
 
-      <div class="cards">
+      <div class="steps">
 
-        <div class="card">
+        <div class="step">
+
+          <div class="number">
+            01 — CONHECER
+          </div>
 
           <h3>
-            01. Conheça seu nível
+            Entendemos você
           </h3>
 
           <p>
-            Entendemos onde você está e o que
+            Descobrimos seu nível atual,
+            suas dificuldades e o que você
             deseja alcançar.
           </p>
 
         </div>
 
 
-        <div class="card">
+        <div class="step">
+
+          <div class="number">
+            02 — PLANEJAR
+          </div>
 
           <h3>
-            02. Monte seu plano
+            Criamos seu caminho
           </h3>
 
           <p>
-            Definimos uma abordagem de estudos
-            de acordo com suas necessidades.
+            As aulas são planejadas de acordo
+            com seus objetivos e necessidades.
           </p>
 
         </div>
 
 
-        <div class="card">
+        <div class="step">
+
+          <div class="number">
+            03 — EVOLUIR
+          </div>
 
           <h3>
-            03. Comece a evoluir
+            Você começa a falar
           </h3>
 
           <p>
-            Aulas individuais, prática e
-            acompanhamento contínuo.
+            Prática, acompanhamento e evolução
+            para ganhar cada vez mais confiança.
           </p>
 
         </div>
@@ -645,7 +1124,89 @@
     </section>
 
 
-    <!-- CONTATO -->
+    <!-- MÉTODO -->
+
+    <section
+      id="metodo"
+      class="section center"
+    >
+
+      <span class="section-label">
+        Método Teacher Carol
+      </span>
+
+      <h2>
+        Mais do que estudar inglês.
+        É aprender a usar.
+      </h2>
+
+      <p class="muted">
+        A proposta é transformar o inglês em uma
+        habilidade presente no seu dia a dia.
+      </p>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">
+            🗣️
+          </div>
+
+          <h3>
+            Comunicação real
+          </h3>
+
+          <p>
+            Situações e conversas que fazem
+            sentido para a sua realidade.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🧠
+          </div>
+
+          <h3>
+            Aprendizado inteligente
+          </h3>
+
+          <p>
+            Conteúdo organizado para facilitar
+            sua compreensão e evolução.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            ❤️
+          </div>
+
+          <h3>
+            Ambiente leve
+          </h3>
+
+          <p>
+            Aprenda sem medo de errar e desenvolva
+            confiança ao longo do processo.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
 
     <section
       id="contato"
@@ -653,12 +1214,12 @@
     >
 
       <h2>
-        Pronto para começar?
+        Pronto para destravar seu inglês?
       </h2>
 
       <p>
-        Entre em contato e descubra como as aulas
-        da Teacher Carol podem ajudar você.
+        Dê o primeiro passo e descubra como as
+        aulas da Teacher Carol podem ajudar você.
       </p>
 
       <a
@@ -666,7 +1227,7 @@
         href="#"
         onclick="alert('Em breve vamos colocar o WhatsApp da Teacher Carol aqui!')"
       >
-        💬 Falar pelo WhatsApp
+        💬 Falar com a Teacher Carol
       </a>
 
     </section>
@@ -678,8 +1239,13 @@
 
   <footer>
 
-    © 2026 Teacher Carol ·
-    Aulas particulares de inglês
+    <div>
+      © 2026 <strong>Teacher <span>Carol</span></strong>
+    </div>
+
+    <div>
+      Aulas particulares de inglês
+    </div>
 
   </footer>
 
