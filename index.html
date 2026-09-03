@@ -268,11 +268,27 @@
       padding: 150px 7% 80px;
       display: grid;
       grid-template-columns: 1.1fr .9fr;
+      grid-template-areas: "text photo";
       align-items: center;
       gap: 70px;
       background:
         radial-gradient(circle at 80% 20%, rgba(255,45,141,.08), transparent 30%),
         #fff;
+    }
+
+    .hero > div:first-child {
+      grid-area: text;
+    }
+
+    .hero-photo {
+      grid-area: photo;
+      height: 600px;
+      background: #171717;
+      border-radius: 25px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #ff2d8d;
+      box-shadow: 20px 20px 0 #ff2d8d;
     }
 
     .tag {
@@ -344,16 +360,6 @@
     /* =========================
        FOTO
     ========================= */
-
-    .hero-photo {
-      height: 600px;
-      background: #171717;
-      border-radius: 25px;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid #ff2d8d;
-      box-shadow: 20px 20px 0 #ff2d8d;
-    }
 
     .teacher-photo {
       width: 100%;
@@ -593,20 +599,22 @@
         display: none;
       }
 
-      /* HERO MOBILE */
-
       .hero {
         min-height: auto;
         grid-template-columns: 1fr;
+        grid-template-areas:
+          "photo"
+          "text";
         gap: 35px;
         padding: 105px 6% 70px;
       }
 
-      /* FOTO PRIMEIRO NO MOBILE */
+      .hero > div:first-child {
+        grid-area: text;
+      }
 
       .hero-photo {
-        grid-row: 1;
-        order: -1;
+        grid-area: photo;
         width: 100%;
         height: 430px;
         border-radius: 22px;
@@ -615,12 +623,6 @@
 
       .teacher-photo {
         object-position: center top;
-      }
-
-      /* TEXTO DEPOIS DA FOTO */
-
-      .hero > div:first-child {
-        order: 2;
       }
 
       .tag {
@@ -650,15 +652,11 @@
         justify-content: center;
       }
 
-      /* STATS */
-
       .stats {
         grid-template-columns: 1fr;
         gap: 25px;
         padding: 35px 6%;
       }
-
-      /* SOBRE */
 
       section.content {
         padding: 80px 6%;
@@ -678,8 +676,6 @@
         padding: 30px;
       }
 
-      /* AULAS */
-
       .class-step {
         grid-template-columns: 55px 1fr;
         gap: 18px;
@@ -694,8 +690,6 @@
         font-size: 22px;
       }
 
-      /* MÉTODO */
-
       .method-box {
         padding: 30px;
         margin-top: 35px;
@@ -704,8 +698,6 @@
       .method-box h3 {
         font-size: 30px;
       }
-
-      /* CTA */
 
       .cta {
         margin: 0 5% 70px;
@@ -718,15 +710,11 @@
         letter-spacing: -2px;
       }
 
-      /* FOOTER */
-
       footer {
         flex-direction: column;
         text-align: center;
         padding: 35px 6%;
       }
-
-      /* ABERTURA MOBILE */
 
       .intro-content {
         width: 88%;
@@ -824,10 +812,6 @@
 
 <body class="intro-active">
 
-  <!-- =========================
-       ABERTURA
-  ========================= -->
-
   <div class="intro" id="intro">
 
     <div class="intro-content">
@@ -884,11 +868,6 @@
 
   </div>
 
-
-  <!-- =========================
-       NAVBAR
-  ========================= -->
-
   <nav>
 
     <div class="logo">
@@ -904,14 +883,7 @@
 
   </nav>
 
-
-  <!-- =========================
-       SITE
-  ========================= -->
-
   <main>
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -950,7 +922,6 @@
 
       </div>
 
-
       <div class="hero-photo">
 
         <div class="pink-circle"></div>
@@ -963,9 +934,6 @@
       </div>
 
     </section>
-
-
-    <!-- STATS -->
 
     <section class="stats">
 
@@ -985,9 +953,6 @@
       </div>
 
     </section>
-
-
-    <!-- SOBRE -->
 
     <section
       class="content"
@@ -1020,7 +985,6 @@
 
         </div>
 
-
         <div class="card">
 
           <div class="card-number">
@@ -1037,7 +1001,6 @@
           </p>
 
         </div>
-
 
         <div class="card">
 
@@ -1060,9 +1023,6 @@
 
     </section>
 
-
-    <!-- AULAS -->
-
     <section
       class="content classes"
       id="aulas">
@@ -1074,7 +1034,6 @@
       <h2 class="section-title">
         Sua evolução começa aqui.
       </h2>
-
 
       <div class="class-step">
 
@@ -1097,7 +1056,6 @@
 
       </div>
 
-
       <div class="class-step">
 
         <div class="class-step-number">
@@ -1118,7 +1076,6 @@
         </div>
 
       </div>
-
 
       <div class="class-step">
 
@@ -1143,9 +1100,6 @@
 
     </section>
 
-
-    <!-- MÉTODO -->
-
     <section
       class="content method"
       id="metodo">
@@ -1158,7 +1112,6 @@
         Aprender inglês.
         Do seu jeito.
       </h2>
-
 
       <div class="method-box">
 
@@ -1176,9 +1129,6 @@
       </div>
 
     </section>
-
-
-    <!-- CTA -->
 
     <section
       class="cta"
@@ -1205,9 +1155,6 @@
 
   </main>
 
-
-  <!-- FOOTER -->
-
   <footer>
 
     <div class="logo">
@@ -1219,11 +1166,6 @@
     </p>
 
   </footer>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -1266,7 +1208,6 @@
         }, 30);
       }
 
-
       function enterSite() {
 
         if (entered) return;
@@ -1285,7 +1226,6 @@
 
       }
 
-
       button.addEventListener("click", function (event) {
 
         event.preventDefault();
@@ -1294,7 +1234,6 @@
         enterSite();
 
       });
-
 
       document.addEventListener("keydown", function (event) {
 
