@@ -1,22 +1,16 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Teacher Carol | Inglês Particular</title>
-
-  <meta
-    name="description"
-    content="Aulas particulares de inglês com a Teacher Carol. Aprenda inglês com confiança, leveza e acompanhamento personalizado."
-  >
+  <meta name="description" content="Teacher Carol — Aulas particulares de inglês personalizadas para você.">
+  <title>Teacher Carol | Inglês que transforma</title>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -25,21 +19,184 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
       color: #171717;
-      background: #ffffff;
-      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    :root {
-      --black: #171717;
-      --black-soft: #242424;
-      --pink: #ff2d8d;
-      --pink-dark: #e51f79;
-      --pink-light: #ffe5f1;
-      --white: #ffffff;
-      --gray: #686868;
-      --light: #f8f8f8;
+    body.intro-active {
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       ABERTURA INTERATIVA
+    ========================= */
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #171717;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform 1s cubic-bezier(.77,0,.18,1);
+    }
+
+    .intro::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,45,141,.15);
+      animation: pulse 3s infinite;
+    }
+
+    .intro::after {
+      content: "";
+      position: absolute;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,45,141,.07);
+    }
+
+    .intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-100%);
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 2;
+      width: min(900px, 90%);
+      text-align: center;
+      color: #fff;
+      animation: introContent .9s ease forwards;
+    }
+
+    .intro-brand {
+      color: #ff2d8d;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+    }
+
+    .intro-quote {
+      font-size: clamp(38px, 6vw, 76px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -3px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .intro-quote span {
+      color: #ff2d8d;
+    }
+
+    .intro-subtitle {
+      margin-top: 25px;
+      color: #aaa;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .enter-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 45px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-ring {
+      position: absolute;
+      inset: 0;
+      width: 150px;
+      height: 150px;
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring circle {
+      fill: none;
+      stroke-width: 3;
+    }
+
+    .ring-bg {
+      stroke: #333;
+    }
+
+    .ring-progress {
+      stroke: #ff2d8d;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset .1s linear;
+    }
+
+    .enter-button {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,45,141,.5);
+      background: #ff2d8d;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .3s ease;
+      box-shadow: 0 0 0 0 rgba(255,45,141,.4);
+    }
+
+    .enter-button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px rgba(255,45,141,.35);
+    }
+
+    .intro-hint {
+      margin-top: 22px;
+      color: #666;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @keyframes introContent {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(.9);
+        opacity: .3;
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: .8;
+      }
     }
 
     /* =========================
@@ -51,68 +208,39 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 78px;
-      padding: 0 7%;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(18px);
-
-      border-bottom: 1px solid #eeeeee;
-
       z-index: 100;
+      padding: 20px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid #eee;
     }
 
     .logo {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
       letter-spacing: -1px;
-      color: var(--black);
     }
 
     .logo span {
-      color: var(--pink);
+      color: #ff2d8d;
     }
 
-    .navlinks {
+    .nav-links {
       display: flex;
-      gap: 34px;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .navlinks a {
-      position: relative;
-
-      color: #333;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 700;
-
-      transition: 0.25s;
+    .nav-links a {
+      transition: .2s;
     }
 
-    .navlinks a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-
-      width: 0;
-      height: 2px;
-
-      background: var(--pink);
-
-      transition: 0.25s;
-    }
-
-    .navlinks a:hover {
-      color: var(--pink);
-    }
-
-    .navlinks a:hover::after {
-      width: 100%;
+    .nav-links a:hover {
+      color: #ff2d8d;
     }
 
     /* =========================
@@ -120,264 +248,121 @@
     ========================= */
 
     .hero {
-      position: relative;
-
       min-height: 100vh;
-
-      padding: 145px 7% 90px;
-
-      display: flex;
+      padding: 150px 7% 80px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
       align-items: center;
-      justify-content: space-between;
-
-      gap: 80px;
-
+      gap: 70px;
       background:
-        radial-gradient(
-          circle at 85% 20%,
-          rgba(255, 45, 141, 0.17),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 15% 90%,
-          rgba(0, 0, 0, 0.06),
-          transparent 30%
-        ),
-        #ffffff;
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-
-      width: 280px;
-      height: 280px;
-
-      border: 1px solid rgba(255, 45, 141, 0.18);
-      border-radius: 50%;
-
-      right: -90px;
-      bottom: -80px;
-    }
-
-    .heroText {
-      position: relative;
-      z-index: 2;
-
-      max-width: 680px;
+        radial-gradient(circle at 80% 20%, rgba(255,45,141,.08), transparent 30%),
+        #fff;
     }
 
     .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      padding: 9px 15px;
-
-      border-radius: 50px;
-
-      background: var(--pink-light);
-      color: var(--pink-dark);
-
+      display: inline-block;
+      background: #fff0f7;
+      color: #ff2d8d;
+      padding: 10px 16px;
+      border-radius: 100px;
       font-size: 13px;
       font-weight: 800;
-
-      border: 1px solid rgba(255, 45, 141, 0.15);
+      margin-bottom: 25px;
     }
 
     .hero h1 {
-      margin: 25px 0 22px;
-
-      font-size: clamp(48px, 6vw, 78px);
-      line-height: 0.98;
-
-      letter-spacing: -4px;
-
-      color: var(--black);
+      font-size: clamp(52px, 7vw, 92px);
+      line-height: .95;
+      letter-spacing: -5px;
+      max-width: 800px;
     }
 
     .hero h1 span {
-      color: var(--pink);
+      color: #ff2d8d;
     }
 
     .hero p {
+      margin-top: 28px;
+      color: #666;
+      font-size: 18px;
+      line-height: 1.7;
       max-width: 600px;
-
-      color: var(--gray);
-
-      font-size: 19px;
-      line-height: 1.8;
     }
 
     .buttons {
       display: flex;
-      gap: 14px;
-
+      gap: 15px;
       margin-top: 35px;
-
       flex-wrap: wrap;
     }
 
     .btn {
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-weight: 800;
+      transition: .3s;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-
-      padding: 15px 24px;
-
-      border-radius: 13px;
-
-      text-decoration: none;
-
-      font-weight: 800;
-      font-size: 15px;
-
-      transition: 0.25s;
+      gap: 8px;
     }
 
-    .btn:hover {
+    .btn.primary {
+      background: #ff2d8d;
+      color: #fff;
+    }
+
+    .btn.primary:hover {
       transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255,45,141,.25);
     }
 
-    .primary {
-      background: var(--pink);
-      color: var(--white);
-
-      box-shadow:
-        0 12px 30px rgba(255, 45, 141, 0.25);
+    .btn.secondary {
+      border: 1px solid #ddd;
     }
 
-    .primary:hover {
-      background: var(--pink-dark);
-      box-shadow:
-        0 16px 35px rgba(255, 45, 141, 0.32);
+    .btn.secondary:hover {
+      border-color: #ff2d8d;
+      color: #ff2d8d;
     }
 
-    .secondary {
-      background: #ffffff;
-      color: var(--black);
+    /* FOTO */
 
-      border: 1px solid #dddddd;
-    }
-
-    .secondary:hover {
-      color: var(--pink);
-      border-color: var(--pink);
-    }
-
-    /* =========================
-       FOTO / MOCKUP
-    ========================= */
-
-    .visual {
+    .hero-photo {
+      height: 600px;
+      background: #171717;
+      border-radius: 25px;
       position: relative;
+      overflow: hidden;
+      border: 2px solid #ff2d8d;
+      box-shadow: 20px 20px 0 #ff2d8d;
+    }
 
-      width: 390px;
-      height: 490px;
-
-      flex-shrink: 0;
-
-      border-radius: 35px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #151515,
-          #292929
-        );
-
-      box-shadow:
-        0 35px 80px rgba(0, 0, 0, 0.20);
-
+    .photo-placeholder {
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-
-      transform: rotate(2deg);
-
-      transition: 0.4s;
-    }
-
-    .visual:hover {
-      transform: rotate(0deg) translateY(-5px);
-    }
-
-    .visual::before {
-      content: "";
-
-      position: absolute;
-
-      inset: -12px;
-
-      border-radius: 42px;
-
-      border: 1px solid rgba(255, 45, 141, 0.35);
-
-      pointer-events: none;
-    }
-
-    .visual::after {
-      content: "";
-
-      position: absolute;
-
-      width: 80px;
-      height: 80px;
-
-      border-radius: 50%;
-
-      background: var(--pink);
-
-      top: -25px;
-      right: -25px;
-
-      box-shadow:
-        0 12px 30px rgba(255, 45, 141, 0.35);
-    }
-
-    .placeholder {
-      width: 310px;
-      height: 410px;
-
-      border-radius: 27px;
-
-      border: 2px dashed rgba(255, 45, 141, 0.8);
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
+      color: #555;
+      font-size: 15px;
       text-align: center;
-
-      color: #ffffff;
-
-      padding: 35px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,0.08),
-          rgba(255,255,255,0.02)
-        );
-
-      backdrop-filter: blur(5px);
+      padding: 40px;
     }
 
-    .placeholder .camera {
-      font-size: 52px;
-      margin-bottom: 15px;
+    .photo-placeholder strong {
+      display: block;
+      color: #ff2d8d;
+      font-size: 25px;
+      margin-bottom: 10px;
     }
 
-    .placeholder strong {
-      font-size: 21px;
-      margin-bottom: 8px;
-    }
-
-    .placeholder span {
-      color: #cfcfcf;
-      font-size: 14px;
+    .pink-circle {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #ff2d8d;
+      right: -70px;
+      top: -70px;
     }
 
     /* =========================
@@ -385,252 +370,154 @@
     ========================= */
 
     .stats {
-      padding: 30px 7%;
-
+      background: #171717;
+      color: #fff;
+      padding: 35px 7%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 20px;
-
-      background: var(--black);
-      color: white;
+      grid-template-columns: repeat(3,1fr);
+      gap: 30px;
     }
 
     .stat {
       text-align: center;
-      padding: 20px;
     }
 
     .stat strong {
+      color: #ff2d8d;
+      font-size: 20px;
       display: block;
-
-      color: var(--pink);
-
-      font-size: 27px;
-      margin-bottom: 3px;
+      margin-bottom: 5px;
     }
 
     .stat span {
-      color: #cccccc;
+      color: #aaa;
       font-size: 14px;
     }
 
     /* =========================
-       SECTIONS
+       ABOUT
     ========================= */
 
-    .section {
+    section.content {
       padding: 110px 7%;
     }
 
-    .center {
-      text-align: center;
-    }
-
     .section-label {
-      display: inline-block;
-
-      margin-bottom: 13px;
-
-      color: var(--pink);
-
+      color: #ff2d8d;
       font-size: 13px;
       font-weight: 900;
-
+      letter-spacing: 3px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      margin-bottom: 15px;
     }
 
-    .section h2 {
-      max-width: 750px;
-
-      margin: auto;
-
-      font-size: clamp(34px, 4vw, 50px);
-
-      line-height: 1.08;
-
-      letter-spacing: -2px;
-
-      color: var(--black);
+    .section-title {
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: 1;
+      letter-spacing: -3px;
+      max-width: 800px;
     }
-
-    .muted {
-      max-width: 650px;
-
-      margin: 16px auto 0;
-
-      color: var(--gray);
-
-      font-size: 17px;
-    }
-
-    /* =========================
-       CARDS
-    ========================= */
 
     .cards {
-      display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 22px;
-
       margin-top: 55px;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
     }
 
     .card {
-      position: relative;
-
-      background: #ffffff;
-
+      border: 1px solid #eee;
+      border-radius: 18px;
       padding: 35px;
-
-      border-radius: 24px;
-
-      border: 1px solid #eeeeee;
-
-      text-align: left;
-
-      box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.045);
-
-      transition: 0.3s;
-
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      top: 0;
-
-      width: 100%;
-      height: 4px;
-
-      background: var(--pink);
-
-      transform: scaleX(0);
-      transform-origin: left;
-
-      transition: 0.3s;
+      transition: .3s;
+      background: #fff;
     }
 
     .card:hover {
       transform: translateY(-8px);
-
-      border-color: rgba(255, 45, 141, 0.25);
-
-      box-shadow:
-        0 25px 50px rgba(0, 0, 0, 0.08);
+      border-color: #ff2d8d;
+      box-shadow: 0 20px 50px rgba(0,0,0,.07);
     }
 
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .icon {
-      width: 55px;
-      height: 55px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin-bottom: 22px;
-
-      border-radius: 16px;
-
-      background: var(--pink-light);
-
-      font-size: 25px;
+    .card-number {
+      color: #ff2d8d;
+      font-size: 13px;
+      font-weight: 900;
     }
 
     .card h3 {
-      font-size: 21px;
-
-      margin-bottom: 10px;
-
-      color: var(--black);
+      margin: 25px 0 12px;
+      font-size: 22px;
     }
 
     .card p {
-      color: var(--gray);
-
+      color: #666;
       line-height: 1.7;
-
-      font-size: 15px;
     }
 
     /* =========================
-       DARK SECTION
+       AULAS
     ========================= */
 
-    .dark-section {
-      background: var(--black);
-      color: white;
+    .classes {
+      background: #171717;
+      color: #fff;
     }
 
-    .dark-section h2 {
-      color: white;
+    .classes .section-title {
+      color: #fff;
     }
 
-    .dark-section .muted {
-      color: #bdbdbd;
-    }
-
-    .steps {
+    .class-step {
       display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 25px;
-
-      margin-top: 55px;
+      grid-template-columns: 100px 1fr;
+      gap: 30px;
+      padding: 35px 0;
+      border-bottom: 1px solid #333;
     }
 
-    .step {
-      padding: 35px;
-
-      border-radius: 24px;
-
-      background: #222222;
-
-      border: 1px solid #333333;
-
-      text-align: left;
-
-      transition: 0.3s;
-    }
-
-    .step:hover {
-      border-color: var(--pink);
-
-      transform: translateY(-5px);
-    }
-
-    .number {
-      color: var(--pink);
-
-      font-size: 14px;
+    .class-step-number {
+      color: #ff2d8d;
+      font-size: 30px;
       font-weight: 900;
-
-      letter-spacing: 2px;
-
-      margin-bottom: 20px;
     }
 
-    .step h3 {
-      font-size: 21px;
+    .class-step h3 {
+      font-size: 25px;
       margin-bottom: 10px;
     }
 
-    .step p {
-      color: #bcbcbc;
-      font-size: 15px;
+    .class-step p {
+      color: #999;
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    /* =========================
+       MÉTODO
+    ========================= */
+
+    .method {
+      background: #fff0f7;
+    }
+
+    .method-box {
+      margin-top: 50px;
+      background: #fff;
+      border-radius: 25px;
+      padding: 50px;
+      border: 1px solid #ffd2e6;
+    }
+
+    .method-box h3 {
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+
+    .method-box p {
+      color: #666;
+      line-height: 1.8;
+      max-width: 800px;
     }
 
     /* =========================
@@ -638,78 +525,29 @@
     ========================= */
 
     .cta {
-      position: relative;
-
-      margin: 90px 7%;
-
-      padding: 80px 8%;
-
-      border-radius: 35px;
-
-      background:
-        radial-gradient(
-          circle at 90% 10%,
-          rgba(255, 45, 141, 0.35),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #171717,
-          #292929
-        );
-
-      color: white;
-
+      margin: 0 7% 100px;
+      padding: 80px;
+      border-radius: 30px;
+      background: #ff2d8d;
+      color: #fff;
       text-align: center;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 30px 70px rgba(0,0,0,0.18);
-    }
-
-    .cta::before {
-      content: "";
-
-      position: absolute;
-
-      width: 180px;
-      height: 180px;
-
-      border-radius: 50%;
-
-      border: 1px solid rgba(255,255,255,0.12);
-
-      left: -70px;
-      bottom: -70px;
     }
 
     .cta h2 {
-      position: relative;
-
-      font-size: clamp(34px, 4vw, 48px);
-
-      margin-bottom: 15px;
-
-      letter-spacing: -2px;
+      font-size: clamp(40px, 6vw, 70px);
+      letter-spacing: -3px;
+      line-height: 1;
     }
 
     .cta p {
-      position: relative;
-
+      margin: 20px auto 30px;
       max-width: 600px;
-
-      margin: auto;
-
-      color: #cccccc;
-
-      font-size: 17px;
+      line-height: 1.7;
+      opacity: .9;
     }
 
-    .cta .primary {
-      position: relative;
-
-      margin-top: 30px;
+    .cta .btn {
+      background: #171717;
     }
 
     /* =========================
@@ -717,140 +555,145 @@
     ========================= */
 
     footer {
-      padding: 35px 7%;
-
+      background: #171717;
+      color: #fff;
+      padding: 40px 7%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      background: #ffffff;
-
-      border-top: 1px solid #eeeeee;
-
-      color: #777777;
-
-      font-size: 14px;
+      gap: 20px;
     }
 
-    footer strong {
-      color: var(--black);
-    }
-
-    footer span {
-      color: var(--pink);
+    footer p {
+      color: #777;
+      font-size: 13px;
     }
 
     /* =========================
        MOBILE
     ========================= */
 
-    @media (max-width: 900px) {
+    @media (max-width: 850px) {
 
-      nav {
-        padding: 0 5%;
-      }
-
-      .navlinks {
+      .nav-links {
         display: none;
       }
 
       .hero {
-        padding: 125px 6% 80px;
-
-        flex-direction: column;
-
-        text-align: center;
-
-        gap: 60px;
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding-top: 130px;
       }
 
-      .heroText {
-        max-width: 700px;
+      .hero h1 {
+        letter-spacing: -3px;
       }
 
-      .hero p {
-        margin: auto;
-      }
-
-      .buttons {
-        justify-content: center;
-      }
-
-      .visual {
-        width: 300px;
-        height: 390px;
-      }
-
-      .placeholder {
-        width: 240px;
-        height: 325px;
+      .hero-photo {
+        height: 480px;
+        box-shadow: 12px 12px 0 #ff2d8d;
       }
 
       .stats {
         grid-template-columns: 1fr;
-        gap: 0;
       }
 
-      .cards,
-      .steps {
+      .cards {
         grid-template-columns: 1fr;
       }
 
-      .section {
-        padding: 80px 6%;
+      .class-step {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .method-box {
+        padding: 30px;
       }
 
       .cta {
-        margin: 60px 5%;
-
-        padding: 60px 7%;
+        margin: 0 5% 70px;
+        padding: 55px 25px;
       }
 
       footer {
         flex-direction: column;
-        gap: 10px;
-      }
-    }
-
-    @media (max-width: 500px) {
-
-      .hero h1 {
-        font-size: 48px;
-        letter-spacing: -2.5px;
+        text-align: center;
       }
 
-      .hero p {
-        font-size: 17px;
+      .intro-quote {
+        font-size: 42px;
+        letter-spacing: -2px;
       }
 
-      .buttons {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .visual {
-        width: 270px;
+      .intro::before {
+        width: 350px;
         height: 350px;
-      }
-
-      .placeholder {
-        width: 215px;
-        height: 290px;
-      }
-
-      .section h2 {
-        font-size: 34px;
       }
     }
   </style>
 </head>
 
-<body>
+<body class="intro-active">
 
-  <!-- NAVBAR -->
+  <!-- =========================
+       ABERTURA
+  ========================= -->
+
+  <div class="intro" id="intro">
+
+    <div class="intro-content">
+
+      <div class="intro-brand">
+        TEACHER CAROL
+      </div>
+
+      <h1 class="intro-quote">
+        Educar é transformar
+        <span>possibilidades</span>
+        em caminhos.
+      </h1>
+
+      <p class="intro-subtitle">
+        Aprender um novo idioma é abrir novas portas.
+      </p>
+
+      <div class="enter-wrapper">
+
+        <svg class="progress-ring" viewBox="0 0 150 150">
+          <circle
+            class="ring-bg"
+            cx="75"
+            cy="75"
+            r="70"
+          ></circle>
+
+          <circle
+            class="ring-progress"
+            id="progressRing"
+            cx="75"
+            cy="75"
+            r="70"
+          ></circle>
+        </svg>
+
+        <button class="enter-button" id="enterButton">
+          ENTRAR →
+        </button>
+
+      </div>
+
+      <div class="intro-hint">
+        Comece sua evolução
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       NAV
+  ========================= -->
 
   <nav>
 
@@ -858,7 +701,7 @@
       Teacher <span>Carol</span>
     </div>
 
-    <div class="navlinks">
+    <div class="nav-links">
       <a href="#sobre">Sobre</a>
       <a href="#aulas">Aulas</a>
       <a href="#metodo">Método</a>
@@ -868,28 +711,29 @@
   </nav>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
   <main>
 
     <section class="hero">
 
-      <div class="heroText">
+      <div>
 
-        <span class="tag">
+        <div class="tag">
           🇺🇸 Inglês personalizado para você
-        </span>
+        </div>
 
         <h1>
           Seu inglês.
-          <br>
-          Sua <span>evolução.</span>
+          <span>Sua evolução.</span>
         </h1>
 
         <p>
-          Aprenda inglês de forma leve, prática e personalizada.
-          Aulas particulares pensadas para transformar seu
-          conhecimento em confiança para falar.
+          Aulas particulares de inglês pensadas para o seu nível,
+          seus objetivos e, principalmente, para você aprender de
+          verdade.
         </p>
 
         <div class="buttons">
@@ -898,14 +742,14 @@
             class="btn primary"
             href="#contato"
           >
-            Quero começar →
+            💬 Quero aprender inglês
           </a>
 
           <a
             class="btn secondary"
             href="#aulas"
           >
-            Conhecer as aulas
+            Conhecer as aulas →
           </a>
 
         </div>
@@ -913,24 +757,16 @@
       </div>
 
 
-      <!-- FOTO DA CAROL -->
+      <div class="hero-photo">
 
-      <div class="visual">
+        <div class="pink-circle"></div>
 
-        <div class="placeholder">
+        <div class="photo-placeholder">
 
-          <div class="camera">
-            📸
+          <div>
+            <strong>Teacher Carol</strong>
+            Sua foto profissional aparecerá aqui.
           </div>
-
-          <strong>
-            Teacher Carol
-          </strong>
-
-          <span>
-            Sua foto profissional
-            entrará aqui.
-          </span>
 
         </div>
 
@@ -939,7 +775,9 @@
     </section>
 
 
-    <!-- DESTAQUES -->
+    <!-- =========================
+         STATS
+    ========================= -->
 
     <section class="stats">
 
@@ -961,42 +799,38 @@
     </section>
 
 
-    <!-- SOBRE -->
+    <!-- =========================
+         SOBRE
+    ========================= -->
 
     <section
+      class="content"
       id="sobre"
-      class="section center"
     >
 
-      <span class="section-label">
-        Por que aprender com a Carol?
-      </span>
+      <div class="section-label">
+        Sobre a Teacher Carol
+      </div>
 
-      <h2>
-        Inglês pensado para a sua vida.
+      <h2 class="section-title">
+        Inglês não precisa ser complicado.
       </h2>
-
-      <p class="muted">
-        Nada de aulas genéricas. O aprendizado acompanha
-        seu nível, seus objetivos e o seu ritmo.
-      </p>
-
 
       <div class="cards">
 
         <div class="card">
 
-          <div class="icon">
-            🎯
+          <div class="card-number">
+            01
           </div>
 
           <h3>
-            Aulas personalizadas
+            Personalizado
           </h3>
 
           <p>
-            Conteúdo adaptado às suas necessidades,
-            interesses e objetivos.
+            Cada aula é pensada de acordo com seu nível,
+            suas dificuldades e seus objetivos.
           </p>
 
         </div>
@@ -1004,17 +838,17 @@
 
         <div class="card">
 
-          <div class="icon">
-            💬
+          <div class="card-number">
+            02
           </div>
 
           <h3>
-            Foco em conversação
+            Prático
           </h3>
 
           <p>
-            Desenvolva segurança para entender,
-            responder e se comunicar em inglês.
+            Você aprende inglês para utilizar na vida real,
+            com situações e conversas do seu dia a dia.
           </p>
 
         </div>
@@ -1022,17 +856,17 @@
 
         <div class="card">
 
-          <div class="icon">
-            📈
+          <div class="card-number">
+            03
           </div>
 
           <h3>
-            Evolução contínua
+            Sem medo
           </h3>
 
           <p>
-            Acompanhe seu desenvolvimento e
-            evolua aula após aula.
+            Um ambiente leve para você perder a vergonha,
+            ganhar confiança e evoluir no seu ritmo.
           </p>
 
         </div>
@@ -1042,79 +876,83 @@
     </section>
 
 
-    <!-- AULAS -->
+    <!-- =========================
+         AULAS
+    ========================= -->
 
     <section
+      class="content classes"
       id="aulas"
-      class="section dark-section center"
     >
 
-      <span class="section-label">
-        As aulas
-      </span>
+      <div class="section-label">
+        Como funciona
+      </div>
 
-      <h2>
-        Aprender pode ser leve.
+      <h2 class="section-title">
+        Sua evolução começa aqui.
       </h2>
 
-      <p class="muted">
-        Um processo simples, próximo e feito para
-        você realmente colocar o inglês em prática.
-      </p>
 
+      <div class="class-step">
 
-      <div class="steps">
+        <div class="class-step-number">
+          01
+        </div>
 
-        <div class="step">
-
-          <div class="number">
-            01 — CONHECER
-          </div>
+        <div>
 
           <h3>
-            Entendemos você
+            Conhecemos você
           </h3>
 
           <p>
-            Descobrimos seu nível atual,
-            suas dificuldades e o que você
-            deseja alcançar.
+            Entendemos seu nível atual, suas dificuldades
+            e o motivo pelo qual você quer aprender inglês.
           </p>
 
         </div>
 
+      </div>
 
-        <div class="step">
 
-          <div class="number">
-            02 — PLANEJAR
-          </div>
+      <div class="class-step">
+
+        <div class="class-step-number">
+          02
+        </div>
+
+        <div>
 
           <h3>
             Criamos seu caminho
           </h3>
 
           <p>
-            As aulas são planejadas de acordo
-            com seus objetivos e necessidades.
+            As aulas são planejadas de forma personalizada
+            para que você avance de maneira consistente.
           </p>
 
         </div>
 
+      </div>
 
-        <div class="step">
 
-          <div class="number">
-            03 — EVOLUIR
-          </div>
+      <div class="class-step">
+
+        <div class="class-step-number">
+          03
+        </div>
+
+        <div>
 
           <h3>
-            Você começa a falar
+            Você começa a evoluir
           </h3>
 
           <p>
-            Prática, acompanhamento e evolução
-            para ganhar cada vez mais confiança.
+            Com prática, acompanhamento e constância,
+            você começa a usar o inglês com muito mais confiança.
           </p>
 
         </div>
@@ -1124,106 +962,64 @@
     </section>
 
 
-    <!-- MÉTODO -->
+    <!-- =========================
+         MÉTODO
+    ========================= -->
 
     <section
+      class="content method"
       id="metodo"
-      class="section center"
     >
 
-      <span class="section-label">
+      <div class="section-label">
         Método Teacher Carol
-      </span>
+      </div>
 
-      <h2>
-        Mais do que estudar inglês.
-        É aprender a usar.
+      <h2 class="section-title">
+        Aprender inglês.
+        Do seu jeito.
       </h2>
 
-      <p class="muted">
-        A proposta é transformar o inglês em uma
-        habilidade presente no seu dia a dia.
-      </p>
 
+      <div class="method-box">
 
-      <div class="cards">
+        <h3>
+          Muito além da gramática.
+        </h3>
 
-        <div class="card">
-
-          <div class="icon">
-            🗣️
-          </div>
-
-          <h3>
-            Comunicação real
-          </h3>
-
-          <p>
-            Situações e conversas que fazem
-            sentido para a sua realidade.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="icon">
-            🧠
-          </div>
-
-          <h3>
-            Aprendizado inteligente
-          </h3>
-
-          <p>
-            Conteúdo organizado para facilitar
-            sua compreensão e evolução.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="icon">
-            ❤️
-          </div>
-
-          <h3>
-            Ambiente leve
-          </h3>
-
-          <p>
-            Aprenda sem medo de errar e desenvolva
-            confiança ao longo do processo.
-          </p>
-
-        </div>
+        <p>
+          O objetivo é fazer você entender, falar e se comunicar
+          com mais naturalidade. As aulas unem conteúdo,
+          conversação e situações práticas para transformar
+          o inglês em uma habilidade que você realmente utiliza.
+        </p>
 
       </div>
 
     </section>
 
 
-    <!-- CTA -->
+    <!-- =========================
+         CTA
+    ========================= -->
 
     <section
-      id="contato"
       class="cta"
+      id="contato"
     >
 
       <h2>
-        Pronto para destravar seu inglês?
+        Pronto para dar
+        o próximo passo?
       </h2>
 
       <p>
-        Dê o primeiro passo e descubra como as
-        aulas da Teacher Carol podem ajudar você.
+        Comece sua jornada no inglês com aulas personalizadas
+        e acompanhamento de verdade.
       </p>
 
       <a
-        class="btn primary"
+        class="btn"
         href="#"
         onclick="alert('Em breve vamos colocar o WhatsApp da Teacher Carol aqui!')"
       >
@@ -1235,20 +1031,109 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer>
 
-    <div>
-      © 2026 <strong>Teacher <span>Carol</span></strong>
+    <div class="logo">
+      Teacher <span>Carol</span>
     </div>
 
-    <div>
-      Aulas particulares de inglês
-    </div>
+    <p>
+      © 2026 Teacher Carol. Todos os direitos reservados.
+    </p>
 
   </footer>
 
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const intro = document.getElementById("intro");
+      const button = document.getElementById("enterButton");
+      const ring = document.getElementById("progressRing");
+
+      let progress = 0;
+      let entered = false;
+
+      const circumference = 2 * Math.PI * 70;
+
+      ring.style.strokeDasharray = circumference;
+      ring.style.strokeDashoffset = circumference;
+
+
+      /*
+        Abertura começa preenchendo
+        o círculo automaticamente.
+      */
+
+      const timer = setInterval(() => {
+
+        progress += 1;
+
+        const offset =
+          circumference -
+          (progress / 100) * circumference;
+
+        ring.style.strokeDashoffset = offset;
+
+        if (progress >= 100) {
+
+          clearInterval(timer);
+
+        }
+
+      }, 35);
+
+
+      /*
+        Entrada no site
+      */
+
+      function enterSite() {
+
+        if (entered) return;
+
+        entered = true;
+
+        intro.classList.add("hide");
+
+        document.body.classList.remove("intro-active");
+
+        setTimeout(() => {
+
+          intro.style.display = "none";
+
+        }, 900);
+
+      }
+
+
+      button.addEventListener("click", enterSite);
+
+
+      /*
+        Tecla Enter também abre.
+      */
+
+      document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter") {
+          enterSite();
+        }
+
+      });
+
+    });
+
+  </script>
+
 </body>
 </html>
-```
