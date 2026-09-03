@@ -1,76 +1,1172 @@
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Teacher Carol — Aulas particulares de inglês personalizadas para você.">
+  <title>Teacher Carol | Inglês que transforma</title>
 
-    const intro = document.getElementById("intro");
-    const button = document.getElementById("enterButton");
-    const ring = document.getElementById("progressRing");
-
-    let entered = false;
-
-    // Tamanho do círculo
-    const radius = 70;
-    const circumference = 2 * Math.PI * radius;
-
-    ring.style.strokeDasharray = circumference;
-    ring.style.strokeDashoffset = circumference;
-
-    // Animação do círculo
-    let progress = 0;
-
-    const loading = setInterval(function () {
-
-      progress++;
-
-      const offset =
-        circumference - (progress / 100) * circumference;
-
-      ring.style.strokeDashoffset = offset;
-
-      if (progress >= 100) {
-        clearInterval(loading);
-      }
-
-    }, 30);
-
-
-    // FUNÇÃO PARA ENTRAR NO SITE
-    function enterSite() {
-
-      if (entered) return;
-
-      entered = true;
-
-      // Anima a tela de abertura para cima
-      intro.classList.add("hide");
-
-      // Libera a rolagem do site
-      document.body.classList.remove("intro-active");
-
-      // Remove completamente a abertura depois da animação
-      setTimeout(function () {
-        intro.style.display = "none";
-      }, 900);
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
 
-    // Clique no botão
-    button.addEventListener("click", function (event) {
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #171717;
+      overflow-x: hidden;
+    }
 
-      event.preventDefault();
+    body.intro-active {
+      overflow: hidden;
+    }
 
-      enterSite();
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    });
+    /* =========================
+       ABERTURA INTERATIVA
+    ========================= */
 
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #171717;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform 1s cubic-bezier(.77,0,.18,1);
+    }
 
-    // Também permite apertar ENTER no teclado
-    document.addEventListener("keydown", function (event) {
+    .intro::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,45,141,.15);
+      animation: pulse 3s infinite;
+      pointer-events: none;
+    }
 
-      if (event.key === "Enter") {
-        enterSite();
+    .intro::after {
+      content: "";
+      position: absolute;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,45,141,.07);
+      pointer-events: none;
+    }
+
+    .intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-100%);
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 2;
+      width: min(900px, 90%);
+      text-align: center;
+      color: #fff;
+      animation: introContent .9s ease forwards;
+    }
+
+    .intro-brand {
+      color: #ff2d8d;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+    }
+
+    .intro-quote {
+      font-size: clamp(38px, 6vw, 76px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -3px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .intro-quote span {
+      color: #ff2d8d;
+    }
+
+    .intro-subtitle {
+      margin-top: 25px;
+      color: #aaa;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .enter-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 45px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-ring {
+      position: absolute;
+      inset: 0;
+      width: 150px;
+      height: 150px;
+      transform: rotate(-90deg);
+      pointer-events: none;
+    }
+
+    .progress-ring circle {
+      fill: none;
+      stroke-width: 3;
+    }
+
+    .ring-bg {
+      stroke: #333;
+    }
+
+    .ring-progress {
+      stroke: #ff2d8d;
+      stroke-linecap: round;
+      transition: stroke-dashoffset .1s linear;
+    }
+
+    .enter-button {
+      position: relative;
+      z-index: 5;
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,45,141,.5);
+      background: #ff2d8d;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .3s ease;
+      box-shadow: 0 0 0 0 rgba(255,45,141,.4);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .enter-button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px rgba(255,45,141,.35);
+    }
+
+    .enter-button:active {
+      transform: scale(.96);
+    }
+
+    .enter-button:disabled {
+      opacity: .8;
+      cursor: default;
+    }
+
+    .intro-hint {
+      margin-top: 22px;
+      color: #666;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @keyframes introContent {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
       }
 
-    });
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  });
-</script>
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(.9);
+        opacity: .3;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: .8;
+      }
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 20px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #ff2d8d;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: #ff2d8d;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 7% 80px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 70px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,45,141,.08), transparent 30%),
+        #fff;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #fff0f7;
+      color: #ff2d8d;
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 7vw, 92px);
+      line-height: .95;
+      letter-spacing: -5px;
+      max-width: 800px;
+    }
+
+    .hero h1 span {
+      color: #ff2d8d;
+    }
+
+    .hero p {
+      margin-top: 28px;
+      color: #666;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-weight: 800;
+      transition: .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn.primary {
+      background: #ff2d8d;
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255,45,141,.25);
+    }
+
+    .btn.secondary {
+      border: 1px solid #ddd;
+    }
+
+    .btn.secondary:hover {
+      border-color: #ff2d8d;
+      color: #ff2d8d;
+    }
+
+    /* =========================
+       FOTO
+    ========================= */
+
+    .hero-photo {
+      height: 600px;
+      background: #171717;
+      border-radius: 25px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #ff2d8d;
+      box-shadow: 20px 20px 0 #ff2d8d;
+    }
+
+    .photo-placeholder {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 15px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .photo-placeholder strong {
+      display: block;
+      color: #ff2d8d;
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .pink-circle {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #ff2d8d;
+      right: -70px;
+      top: -70px;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      background: #171717;
+      color: #fff;
+      padding: 35px 7%;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 30px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat strong {
+      color: #ff2d8d;
+      font-size: 20px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .stat span {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    section.content {
+      padding: 110px 7%;
+    }
+
+    .section-label {
+      color: #ff2d8d;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: 1;
+      letter-spacing: -3px;
+      max-width: 800px;
+    }
+
+    .cards {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #eee;
+      border-radius: 18px;
+      padding: 35px;
+      transition: .3s;
+      background: #fff;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #ff2d8d;
+      box-shadow: 0 20px 50px rgba(0,0,0,.07);
+    }
+
+    .card-number {
+      color: #ff2d8d;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .card h3 {
+      margin: 25px 0 12px;
+      font-size: 22px;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       AULAS
+    ========================= */
+
+    .classes {
+      background: #171717;
+      color: #fff;
+    }
+
+    .classes .section-title {
+      color: #fff;
+    }
+
+    .class-step {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 30px;
+      padding: 35px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .class-step-number {
+      color: #ff2d8d;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .class-step h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .class-step p {
+      color: #999;
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    /* =========================
+       MÉTODO
+    ========================= */
+
+    .method {
+      background: #fff0f7;
+    }
+
+    .method-box {
+      margin-top: 50px;
+      background: #fff;
+      border-radius: 25px;
+      padding: 50px;
+      border: 1px solid #ffd2e6;
+    }
+
+    .method-box h3 {
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+
+    .method-box p {
+      color: #666;
+      line-height: 1.8;
+      max-width: 800px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      margin: 0 7% 100px;
+      padding: 80px;
+      border-radius: 30px;
+      background: #ff2d8d;
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(40px, 6vw, 70px);
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .cta p {
+      margin: 20px auto 30px;
+      max-width: 600px;
+      line-height: 1.7;
+      opacity: .9;
+    }
+
+    .cta .btn {
+      background: #171717;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #171717;
+      color: #fff;
+      padding: 40px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    footer p {
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding-top: 130px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-photo {
+        height: 480px;
+        box-shadow: 12px 12px 0 #ff2d8d;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .class-step {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .method-box {
+        padding: 30px;
+      }
+
+      .cta {
+        margin: 0 5% 70px;
+        padding: 55px 25px;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .intro-quote {
+        font-size: 42px;
+        letter-spacing: -2px;
+      }
+
+      .intro::before {
+        width: 350px;
+        height: 350px;
+      }
+
+      .intro::after {
+        width: 500px;
+        height: 500px;
+      }
+    }
+  </style>
+</head>
+
+<body class="intro-active">
+
+  <!-- =========================
+       ABERTURA
+  ========================= -->
+
+  <div class="intro" id="intro">
+
+    <div class="intro-content">
+
+      <div class="intro-brand">
+        TEACHER CAROL
+      </div>
+
+      <h1 class="intro-quote">
+        Educar é transformar
+        <span>possibilidades</span>
+        em caminhos.
+      </h1>
+
+      <p class="intro-subtitle">
+        Aprender um novo idioma é abrir novas portas.
+      </p>
+
+      <div class="enter-wrapper">
+
+        <svg class="progress-ring" viewBox="0 0 150 150">
+
+          <circle
+            class="ring-bg"
+            cx="75"
+            cy="75"
+            r="70">
+          </circle>
+
+          <circle
+            class="ring-progress"
+            id="progressRing"
+            cx="75"
+            cy="75"
+            r="70">
+          </circle>
+
+        </svg>
+
+        <button
+          type="button"
+          class="enter-button"
+          id="enterButton">
+          ENTRAR →
+        </button>
+
+      </div>
+
+      <div class="intro-hint">
+        Comece sua evolução
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <nav>
+
+    <div class="logo">
+      Teacher <span>Carol</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#aulas">Aulas</a>
+      <a href="#metodo">Método</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+  </nav>
+
+
+  <!-- =========================
+       SITE
+  ========================= -->
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div>
+
+        <div class="tag">
+          🇺🇸 Inglês personalizado para você
+        </div>
+
+        <h1>
+          Seu inglês.
+          <span>Sua evolução.</span>
+        </h1>
+
+        <p>
+          Aulas particulares de inglês pensadas para o seu nível,
+          seus objetivos e, principalmente, para você aprender de
+          verdade.
+        </p>
+
+        <div class="buttons">
+
+          <a
+            class="btn primary"
+            href="#contato">
+            💬 Quero aprender inglês
+          </a>
+
+          <a
+            class="btn secondary"
+            href="#aulas">
+            Conhecer as aulas →
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-photo">
+
+        <div class="pink-circle"></div>
+
+        <div class="photo-placeholder">
+
+          <div>
+
+            <strong>
+              Teacher Carol
+            </strong>
+
+            Sua foto profissional aparecerá aqui.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Aulas personalizadas</span>
+      </div>
+
+      <div class="stat">
+        <strong>1:1</strong>
+        <span>Acompanhamento individual</span>
+      </div>
+
+      <div class="stat">
+        <strong>+ Confiança</strong>
+        <span>Foco na comunicação</span>
+      </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+
+    <section
+      class="content"
+      id="sobre">
+
+      <div class="section-label">
+        Sobre a Teacher Carol
+      </div>
+
+      <h2 class="section-title">
+        Inglês não precisa ser complicado.
+      </h2>
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="card-number">
+            01
+          </div>
+
+          <h3>
+            Personalizado
+          </h3>
+
+          <p>
+            Cada aula é pensada de acordo com seu nível,
+            suas dificuldades e seus objetivos.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-number">
+            02
+          </div>
+
+          <h3>
+            Prático
+          </h3>
+
+          <p>
+            Você aprende inglês para utilizar na vida real,
+            com situações e conversas do seu dia a dia.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-number">
+            03
+          </div>
+
+          <h3>
+            Sem medo
+          </h3>
+
+          <p>
+            Um ambiente leve para você perder a vergonha,
+            ganhar confiança e evoluir no seu ritmo.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- AULAS -->
+
+    <section
+      class="content classes"
+      id="aulas">
+
+      <div class="section-label">
+        Como funciona
+      </div>
+
+      <h2 class="section-title">
+        Sua evolução começa aqui.
+      </h2>
+
+
+      <div class="class-step">
+
+        <div class="class-step-number">
+          01
+        </div>
+
+        <div>
+
+          <h3>
+            Conhecemos você
+          </h3>
+
+          <p>
+            Entendemos seu nível atual, suas dificuldades
+            e o motivo pelo qual você quer aprender inglês.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="class-step">
+
+        <div class="class-step-number">
+          02
+        </div>
+
+        <div>
+
+          <h3>
+            Criamos seu caminho
+          </h3>
+
+          <p>
+            As aulas são planejadas de forma personalizada
+            para que você avance de maneira consistente.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="class-step">
+
+        <div class="class-step-number">
+          03
+        </div>
+
+        <div>
+
+          <h3>
+            Você começa a evoluir
+          </h3>
+
+          <p>
+            Com prática, acompanhamento e constância,
+            você começa a usar o inglês com muito mais confiança.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MÉTODO -->
+
+    <section
+      class="content method"
+      id="metodo">
+
+      <div class="section-label">
+        Método Teacher Carol
+      </div>
+
+      <h2 class="section-title">
+        Aprender inglês.
+        Do seu jeito.
+      </h2>
+
+
+      <div class="method-box">
+
+        <h3>
+          Muito além da gramática.
+        </h3>
+
+        <p>
+          O objetivo é fazer você entender, falar e se comunicar
+          com mais naturalidade. As aulas unem conteúdo,
+          conversação e situações práticas para transformar
+          o inglês em uma habilidade que você realmente utiliza.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section
+      class="cta"
+      id="contato">
+
+      <h2>
+        Pronto para dar
+        o próximo passo?
+      </h2>
+
+      <p>
+        Comece sua jornada no inglês com aulas personalizadas
+        e acompanhamento de verdade.
+      </p>
+
+      <a
+        class="btn"
+        href="#"
+        onclick="alert('Em breve vamos colocar o WhatsApp da Teacher Carol aqui!'); return false;">
+        💬 Falar com a Teacher Carol
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="logo">
+      Teacher <span>Carol</span>
+    </div>
+
+    <p>
+      © 2026 Teacher Carol. Todos os direitos reservados.
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const intro = document.getElementById("intro");
+      const button = document.getElementById("enterButton");
+      const ring = document.getElementById("progressRing");
+
+      // Se a abertura não existir, libera o site.
+      if (!intro || !button) {
+        document.body.classList.remove("intro-active");
+        return;
+      }
+
+      let entered = false;
+
+      // =========================
+      // CÍRCULO DE PROGRESSO
+      // =========================
+
+      if (ring) {
+
+        const radius = 70;
+        const circumference = 2 * Math.PI * radius;
+
+        ring.style.strokeDasharray = circumference;
+        ring.style.strokeDashoffset = circumference;
+
+        let progress = 0;
+
+        const timer = setInterval(function () {
+
+          progress++;
+
+          const offset =
+            circumference -
+            (progress / 100) * circumference;
+
+          ring.style.strokeDashoffset = offset;
+
+          if (progress >= 100) {
+            clearInterval(timer);
+          }
+
+        }, 30);
+      }
+
+
+      // =========================
+      // ENTRAR
+      // =========================
+
+      function enterSite() {
+
+        if (entered) return;
+
+        entered = true;
+
+        button.disabled = true;
+
+        intro.classList.add("hide");
+
+        document.body.classList.remove("intro-active");
+
+        setTimeout(function () {
+          intro.style.display = "none";
+        }, 1000);
+
+      }
+
+
+      // =========================
+      // CLIQUE NO BOTÃO
+      // =========================
+
+      button.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        enterSite();
+
+      });
+
+
+      // =========================
+      // TECLA ENTER
+      // =========================
+
+      document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+          enterSite();
+        }
+
+      });
+
+    });
+  </script>
+
+</body>
+</html>
+```
