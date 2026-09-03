@@ -8,6 +8,7 @@
   <title>Teacher Carol | Inglês que transforma</title>
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -35,7 +36,7 @@
     }
 
     /* =========================
-       ABERTURA INTERATIVA
+       ABERTURA
     ========================= */
 
     .intro {
@@ -165,7 +166,6 @@
       font-weight: 800;
       cursor: pointer;
       transition: .3s ease;
-      box-shadow: 0 0 0 0 rgba(255,45,141,.4);
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -266,29 +266,28 @@
     .hero {
       min-height: 100vh;
       padding: 150px 7% 80px;
+
       display: grid;
+
+      /* COMPUTADOR:
+         TEXTO | FOTO
+      */
       grid-template-columns: 1.1fr .9fr;
-      grid-template-areas: "text photo";
+
       align-items: center;
       gap: 70px;
+
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,45,141,.08), transparent 30%),
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(255,45,141,.08),
+          transparent 30%
+        ),
         #fff;
     }
 
-    .hero > div:first-child {
-      grid-area: text;
-    }
-
-    .hero-photo {
-      grid-area: photo;
-      height: 600px;
-      background: #171717;
-      border-radius: 25px;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid #ff2d8d;
-      box-shadow: 20px 20px 0 #ff2d8d;
+    .hero-text {
+      min-width: 0;
     }
 
     .tag {
@@ -360,6 +359,16 @@
     /* =========================
        FOTO
     ========================= */
+
+    .hero-photo {
+      height: 600px;
+      background: #171717;
+      border-radius: 25px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #ff2d8d;
+      box-shadow: 20px 20px 0 #ff2d8d;
+    }
 
     .teacher-photo {
       width: 100%;
@@ -599,26 +608,38 @@
         display: none;
       }
 
+      /* =========================
+         CELULAR:
+         FOTO PRIMEIRO
+      ========================= */
+
       .hero {
         min-height: auto;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "photo"
-          "text";
+
+        display: flex;
+        flex-direction: column;
+
         gap: 35px;
         padding: 105px 6% 70px;
       }
 
-      .hero > div:first-child {
-        grid-area: text;
-      }
-
+      /* FOTO PRIMEIRO */
       .hero-photo {
-        grid-area: photo;
+        order: 1;
+
         width: 100%;
         height: 430px;
+
+        flex-shrink: 0;
+
         border-radius: 22px;
         box-shadow: 10px 10px 0 #ff2d8d;
+      }
+
+      /* TEXTO SEGUNDO */
+      .hero-text {
+        order: 2;
+        width: 100%;
       }
 
       .teacher-photo {
@@ -652,11 +673,15 @@
         justify-content: center;
       }
 
+      /* STATS */
+
       .stats {
         grid-template-columns: 1fr;
         gap: 25px;
         padding: 35px 6%;
       }
+
+      /* SOBRE */
 
       section.content {
         padding: 80px 6%;
@@ -676,6 +701,8 @@
         padding: 30px;
       }
 
+      /* AULAS */
+
       .class-step {
         grid-template-columns: 55px 1fr;
         gap: 18px;
@@ -690,6 +717,8 @@
         font-size: 22px;
       }
 
+      /* MÉTODO */
+
       .method-box {
         padding: 30px;
         margin-top: 35px;
@@ -698,6 +727,8 @@
       .method-box h3 {
         font-size: 30px;
       }
+
+      /* CTA */
 
       .cta {
         margin: 0 5% 70px;
@@ -710,11 +741,15 @@
         letter-spacing: -2px;
       }
 
+      /* FOOTER */
+
       footer {
         flex-direction: column;
         text-align: center;
         padding: 35px 6%;
       }
+
+      /* ABERTURA MOBILE */
 
       .intro-content {
         width: 88%;
@@ -807,10 +842,15 @@
         margin-top: 25px;
       }
     }
+
   </style>
 </head>
 
 <body class="intro-active">
+
+  <!-- =========================
+       ABERTURA
+  ========================= -->
 
   <div class="intro" id="intro">
 
@@ -868,6 +908,11 @@
 
   </div>
 
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
   <nav>
 
     <div class="logo">
@@ -883,11 +928,22 @@
 
   </nav>
 
+
+  <!-- =========================
+       SITE
+  ========================= -->
+
   <main>
+
+    <!-- =========================
+         HERO
+    ========================= -->
 
     <section class="hero">
 
-      <div>
+      <!-- TEXTO -->
+
+      <div class="hero-text">
 
         <div class="tag">
           🇺🇸 Inglês personalizado para você
@@ -922,6 +978,9 @@
 
       </div>
 
+
+      <!-- FOTO -->
+
       <div class="hero-photo">
 
         <div class="pink-circle"></div>
@@ -934,6 +993,11 @@
       </div>
 
     </section>
+
+
+    <!-- =========================
+         STATS
+    ========================= -->
 
     <section class="stats">
 
@@ -953,6 +1017,11 @@
       </div>
 
     </section>
+
+
+    <!-- =========================
+         SOBRE
+    ========================= -->
 
     <section
       class="content"
@@ -985,6 +1054,7 @@
 
         </div>
 
+
         <div class="card">
 
           <div class="card-number">
@@ -1001,6 +1071,7 @@
           </p>
 
         </div>
+
 
         <div class="card">
 
@@ -1023,6 +1094,11 @@
 
     </section>
 
+
+    <!-- =========================
+         AULAS
+    ========================= -->
+
     <section
       class="content classes"
       id="aulas">
@@ -1034,6 +1110,7 @@
       <h2 class="section-title">
         Sua evolução começa aqui.
       </h2>
+
 
       <div class="class-step">
 
@@ -1056,6 +1133,7 @@
 
       </div>
 
+
       <div class="class-step">
 
         <div class="class-step-number">
@@ -1076,6 +1154,7 @@
         </div>
 
       </div>
+
 
       <div class="class-step">
 
@@ -1100,6 +1179,11 @@
 
     </section>
 
+
+    <!-- =========================
+         MÉTODO
+    ========================= -->
+
     <section
       class="content method"
       id="metodo">
@@ -1112,6 +1196,7 @@
         Aprender inglês.
         Do seu jeito.
       </h2>
+
 
       <div class="method-box">
 
@@ -1129,6 +1214,11 @@
       </div>
 
     </section>
+
+
+    <!-- =========================
+         CTA
+    ========================= -->
 
     <section
       class="cta"
@@ -1155,6 +1245,11 @@
 
   </main>
 
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
   <footer>
 
     <div class="logo">
@@ -1167,7 +1262,13 @@
 
   </footer>
 
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
   <script>
+
     document.addEventListener("DOMContentLoaded", function () {
 
       const intro = document.getElementById("intro");
@@ -1181,32 +1282,46 @@
 
       let entered = false;
 
+
+      /* ANIMAÇÃO DO CÍRCULO */
+
       if (ring) {
 
         const radius = 70;
-        const circumference = 2 * Math.PI * radius;
 
-        ring.style.strokeDasharray = circumference;
-        ring.style.strokeDashoffset = circumference;
+        const circumference =
+          2 * Math.PI * radius;
+
+        ring.style.strokeDasharray =
+          circumference;
+
+        ring.style.strokeDashoffset =
+          circumference;
 
         let progress = 0;
 
-        const timer = setInterval(function () {
+        const timer =
+          setInterval(function () {
 
-          progress++;
+            progress++;
 
-          const offset =
-            circumference -
-            (progress / 100) * circumference;
+            const offset =
+              circumference -
+              (progress / 100) *
+              circumference;
 
-          ring.style.strokeDashoffset = offset;
+            ring.style.strokeDashoffset =
+              offset;
 
-          if (progress >= 100) {
-            clearInterval(timer);
-          }
+            if (progress >= 100) {
+              clearInterval(timer);
+            }
 
-        }, 30);
+          }, 30);
       }
+
+
+      /* ENTRAR NO SITE */
 
       function enterSite() {
 
@@ -1218,32 +1333,49 @@
 
         intro.classList.add("hide");
 
-        document.body.classList.remove("intro-active");
+        document.body.classList.remove(
+          "intro-active"
+        );
 
         setTimeout(function () {
+
           intro.style.display = "none";
+
         }, 1000);
 
       }
 
-      button.addEventListener("click", function (event) {
 
-        event.preventDefault();
-        event.stopPropagation();
+      /* CLIQUE */
 
-        enterSite();
+      button.addEventListener(
+        "click",
+        function (event) {
 
-      });
+          event.preventDefault();
+          event.stopPropagation();
 
-      document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Enter") {
           enterSite();
-        }
 
-      });
+        }
+      );
+
+
+      /* ENTER DO TECLADO */
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+
+          if (event.key === "Enter") {
+            enterSite();
+          }
+
+        }
+      );
 
     });
+
   </script>
 
 </body>
